@@ -1,4 +1,4 @@
-#Algorithmic Javascript Functions and Data Structures
+# Algorithmic Javascript Functions and Data Structures
 
 #### This is a personal endeavor to understand the most widely used, and most curious, sorting algorithms and common data structures in the context of Javascript.
 
