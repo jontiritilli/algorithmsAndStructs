@@ -5,7 +5,7 @@
 ### Sorting Algorithms
 - [x] Bubble Sort *(to understand the inefficiencies of O(n<sup>2</sup>))*
 - [x] Quick Sort *(fastest according to O(n))*
-- [x] Pancake Sort(for fun)
+- [x] Pancake Sort *(for fun)*
 - [ ] Insertion Sort
 - [ ] Merge Sort
 - [ ] Radix style sorts
