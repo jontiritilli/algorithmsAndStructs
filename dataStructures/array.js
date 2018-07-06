@@ -1,5 +1,5 @@
 class Array {
-  constructor(size = 4){
+  constructor(size = 5){
     this.store = {
         0:0,
         1:1,
@@ -25,21 +25,34 @@ class Array {
     this.store[this.count] = item;
     this.count++;
   }
+  splice(key, count, add){
+    let removed = {};
+    for(let i = key, start = 0; i < count; i++, start++){
+      let temp = this.store[i];
+      delete this.store[i];
+      removed[start] = temp;
+      this.count--;
+    }
+    this.renumber();
+    return removed;
+  }
   slice(key){
     let item = this.store[key];
     delete this.store[key];
+    this.count--;
     this.renumber();
     return item;
   }
   renumber(){
     let start = 0;
     for(let key in this.store){
-      if(start == this.count+1) {
-        delete this.store[start];
+      if(start === this.count) {
         return;
       }
-      this.store[start] = this.store[key];
-      start++
+      let temp = this.store[key];
+      delete this.store[key];
+      this.store[start] = temp;
+      start++;
     }
     return true;
   }
