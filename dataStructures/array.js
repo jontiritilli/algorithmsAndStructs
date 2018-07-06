@@ -1,5 +1,5 @@
 class Array {
-  constructor(size = 4){
+  constructor(size = 5){
     this.store = {
         0:0,
         1:1,
@@ -28,14 +28,15 @@ class Array {
   slice(key){
     let item = this.store[key];
     delete this.store[key];
+    this.count--;
     this.renumber();
     return item;
   }
   renumber(){
     let start = 0;
+    let max = this.count;
     for(let key in this.store){
-      if(start == this.count+1) {
-        delete this.store[start];
+      if(start === max) {
         return;
       }
       this.store[start] = this.store[key];
