@@ -1,5 +1,5 @@
 class Array {
-  constructor(size = 5){
+  constructor(size = 5, contents = {}){
     this.store = {
         0:0,
         1:1,
@@ -7,23 +7,23 @@ class Array {
         3:3,
         4:4
     };
-    this.count = size;
+    this.length = size;
   }
   length(){
-    return this.count;
+    return this.length;
   }
   pop(){
-    if(this.count === 0){
+    if(this.length === 0){
       return undefined;
     }
-    let item = this.store[this.count];
-    delete this.store[this.count]
-    this.count--;
+    let item = this.store[this.length];
+    delete this.store[this.length]
+    this.length--;
     return item;
   }
   push(item){
-    this.store[this.count] = item;
-    this.count++;
+    this.store[this.length] = item;
+    this.length++;
   }
   splice(key, count, add){
     let removed = {};
@@ -31,22 +31,38 @@ class Array {
       let temp = this.store[i];
       delete this.store[i];
       removed[start] = temp;
-      this.count--;
+      this.length--;
     }
-    this.renumber();
+    this.renumber(0);
     return removed;
   }
   slice(key){
     let item = this.store[key];
     delete this.store[key];
-    this.count--;
-    this.renumber();
+    this.length--;
+    this.renumber(0);
     return item;
   }
-  renumber(){
-    let start = 0;
+  shift(){
+    if(this.length === 0){
+      return undefined;
+    }
+    let item = this.store[0];
+    delete this.store[0]
+    this.length--;
+    this.renumber(0)
+    return item;
+  }
+  //issues with unshift and renumbering the object
+  unshift(item){
+    this.renumber(1);
+    this.length++;
+    this.store[0] = item;
+    return this.store;
+  }
+  renumber(start){
     for(let key in this.store){
-      if(start === this.count) {
+      if(start === this.length+start) {
         return;
       }
       let temp = this.store[key];
